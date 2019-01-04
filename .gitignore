@@ -1,0 +1,10 @@
+#Ignore bundler config.
+/.bundle
+
+# Ignore all logfiles and tempfiles.
+/node_modules
+
+node_modules/
+bundle.js
+bundle.js.map
+.DS_Store
