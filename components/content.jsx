@@ -1,36 +1,32 @@
 import React from 'react';
-
-// import map from '../data/soho_1854.json';
-// import deaths from '../data/deaths-topo.json';
-// import pumps from '../data/pumps-topo.json';
-
+import { feature } from "topojson-client";
+import MapModule from './map_module';
 
 class Content extends React.Component {
     constructor() {
         super();
         this.state = {
-            houses: [],
-            outlines: [],
-            houselabels: [],
-            roadLabels: []
+            houses: {},
+            borders: {},
+            // houseLabels: {}, houselabels we can extract from houses properties
+            roadLabels: {},
+            pumps: {},
+            deaths: {},
+            isDataFetched: false
         }
     }
     componentDidMount() {
         this.getData().then(data => {
-            console.log(data);
+            this.setState({
+                houses: feature(data[0], data[0].objects.houses).features,
+                placeLabels: feature(data[0], data[0].objects.houses).features.filter( d => d.properties.title ),
+                borders: feature(data[0], data[0].objects.border).features,
+                roadLabels: feature(data[0], data[0].objects.roads).features,
+                pumps: data[1],
+                deaths: data[2],
+                isDataFetched: true
+            })
         })
-
-
-        // console.log(maps);
-        // fetch('/soho_1854.json')
-        // .then(response => {
-        //     if (response.status !== 200) {
-        //       console.log(`There was a problem: ${response.status}`)
-        //       return
-        //     } else {
-        //         return response.json()
-        //     }})
-        // .then(json => console.log(json))
     }
     
     async getData() {
@@ -42,12 +38,23 @@ class Content extends React.Component {
             ]);
             return data;
         } catch(err) {
-            console.log(`Whoops! Error: ${err}`);
+            console.log(`Whoops! Error fetching data: ${err}`);
         }
     }
 
     render() {
-        return (<h1> I'm the contenet component </h1>);
+        // This is where we can add a spinner
+        if (!this.state.isDataFetched) return null;
+        const { houses, borders, roadLabels, placeLabels } = this.state;
+        return (
+            <MapModule
+                houses={houses}
+                borders={borders}
+                roadLabels={roadLabels}
+                placeLabels={placeLabels}
+
+             />
+        )
     }
 }
 
