@@ -22,8 +22,8 @@ class Content extends React.Component {
                 placeLabels: feature(data[0], data[0].objects.houses).features.filter( d => d.properties.title ),
                 borders: feature(data[0], data[0].objects.border).features,
                 roadLabels: feature(data[0], data[0].objects.roads).features,
-                pumps: data[1],
-                deaths: data[2],
+                pumps: feature(data[0], data[0].objects.pumps).features,
+                deaths: data[2].objects.deaths.geometries,
                 isDataFetched: true
             })
         })
@@ -45,14 +45,16 @@ class Content extends React.Component {
     render() {
         // This is where we can add a spinner
         if (!this.state.isDataFetched) return null;
-        const { houses, borders, roadLabels, placeLabels } = this.state;
+        const { houses, borders, roadLabels, placeLabels, pumps, deaths } = this.state;
         return (
+            // Maybe just pass {...this.state}? 
             <MapModule
                 houses={houses}
                 borders={borders}
                 roadLabels={roadLabels}
                 placeLabels={placeLabels}
-
+                pumps={pumps}
+                deaths={deaths}
              />
         )
     }

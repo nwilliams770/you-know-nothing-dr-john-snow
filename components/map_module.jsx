@@ -1,5 +1,8 @@
 import React from 'react';
-import { geoMercator, geoPath, centroid, geoProjection } from "d3-geo";
+import { geoMercator, geoPath } from "d3-geo";
+
+// To-do:
+//  - Add legend
 
 class MapModule extends React.Component {
     constructor(props) {
@@ -18,7 +21,7 @@ class MapModule extends React.Component {
     }
 
     render () {
-        const { houses, borders, roadLabels, placeLabels } = this.props;
+        const { houses, borders, roadLabels, placeLabels, pumps, deaths } = this.props;
         return (
             <svg width={ 960 } height={ 800 } viewBox='0 0 960 800'>
                 <g className='city'>
@@ -32,7 +35,7 @@ class MapModule extends React.Component {
                         ))
                     }
                 </g>
-                <g className="border" >
+                <g className='border' >
                     {
                         borders.map((d, i) => (
                             <path
@@ -42,38 +45,62 @@ class MapModule extends React.Component {
                         ))
                     }
                 </g>
-                <g className="places" >
+                <g className='places' >
                     {
                         placeLabels.map((d, i) => (
                             <text
                                 key={`place-${i}`}
-                                dy="0.32em"
+                                dy='0.32em'
                                 transform={`translate(${geoPath().projection(this.projection()).centroid(d)})`}
                             >
                             {d.properties.title}
                             </text>
-                                
                         ))
                     }
                 </g>
-                <g className="roads" >
+                <g className='roads' >
                     {
                         roadLabels.map((d, i) => {
                             let xy = this.projection()(d.geometry.coordinates)
                             , deg = d.properties.angle * (180 / Math.PI);
-                            console.log(xy);
-                            console.log(deg);
                             return (
-                            <text
-                                key={`road-${i}`}
-                                dy="0.32em"
-                                transform={`translate(${xy}) rotate(${deg})`}
-                            >
-                            {d.properties.title}
-                            </text>
+                                <text
+                                    key={`road-${i}`}
+                                    dy='0.32em'
+                                    transform={`translate(${xy}) rotate(${deg})`}
+                                >
+                                {d.properties.title}
+                                </text>
                             )  
                         })
                     }
+                </g>
+                <g className='pumps'>
+                    {
+                        pumps.map((d, i) => (
+                            <rect
+                                // the name of the pump
+                                key={`${d.properties.title}`}
+                                width={9}
+                                height={9}
+                                transform={`translate(${this.projection()(d.geometry.coordinates)}) rotate(45)`}
+                            />
+                        ))
+                    }
+                </g>
+                <g className='deaths'>
+                    {
+                        deaths.map((d, i) => (
+                            <circle
+                                key={`death-${i}`}
+                                r={2}
+                                transform={`translate(${this.projection()(d.coordinates)})`}
+                            />
+                        ))      
+                    }
+                </g>
+                <g className='legend' transform={'translate(15,15)'}>
+                    
                 </g>
             </svg>
         )
@@ -81,4 +108,3 @@ class MapModule extends React.Component {
 }
 
 export default MapModule;
-
