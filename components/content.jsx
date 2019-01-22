@@ -49,6 +49,7 @@ class Content extends React.Component {
     render() {
         // This is where we can add a spinner
         // TO DO: Perhaps this is where we should add the projection, and then just pass it down
+        //  perhaps pass an options hash with the proection, width, height
         if (!this.state.isDataFetched) return null;
         const width = 960
             , height = 800;

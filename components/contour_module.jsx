@@ -1,6 +1,6 @@
 import React from 'react';
 import { geoMercator, geoPath } from "d3-geo";
-import contours from 'd3-contour';
+import { contours, contourDensity } from 'd3-contour';
 
 class ContourModule extends React.Component {
     projection() {
@@ -14,22 +14,42 @@ class ContourModule extends React.Component {
     }
 
     render() {
-        const { deaths } = this.props;
+        const { deaths, width, height } = this.props;
         const projection = this.projection();
         var deathPos = [];
 
         deaths.forEach (death => {
             deathPos.push( projection(death.coordinates));
         })
+        const test2 = contourDensity()
+                        .size([width, height])
+                        .bandwidth(20)
+                        .thresholds(15)
+                    (deathPos)
 
-        // console.log(contours);
-        // var contours = contours()
-        //     .size([n, m])
-        //     .thresholds(d3.range(2, 21).map(p => Math.pow(2, p)))
-        //     (deathPos);
+        // test.forEach(n => console.log(n.coordinates))
+
+        console.log(test2);
+
+
 
         return (
             <g className="contour">
+                {
+                    test2.map((d, i) => {
+                        // console.log(d);
+                        return (
+
+                        
+                        <path 
+                            key={`contour-${i}`}
+                            d={geoPath()(d)}
+                            fill='transparent'
+                            stroke='black'
+                            strokeWidth='1px'
+                        /> )
+                    })
+                }
             </g>
         );
     }
