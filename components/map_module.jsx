@@ -3,6 +3,8 @@ import { geoMercator, geoPath } from "d3-geo";
 
 // To-do:
 //  - Add legend
+//  - refactor to a functional component? There is not really any state
+// refer to this https://medium.com/@thechrisbull/4-different-kinds-of-components-creating-a-react-ui-component-framework-saga-a-designer-9043c0cc597
 
 class MapModule extends React.Component {
     constructor(props) {
@@ -10,8 +12,7 @@ class MapModule extends React.Component {
     }
 
     projection() {
-        const width = 960
-            , height = 800;
+        const { width, height } = this.props;
         return geoMercator()
             .scale( 43e5 )
             .center([ -0.1376, 51.5131 ])
@@ -23,7 +24,7 @@ class MapModule extends React.Component {
     render () {
         const { houses, borders, roadLabels, placeLabels, pumps, deaths } = this.props;
         return (
-            <svg width={ 960 } height={ 800 } viewBox='0 0 960 800'>
+            <g className='map-module'>
                 <g className='city'>
                     {
                         houses.map((d, i) => (
@@ -102,7 +103,7 @@ class MapModule extends React.Component {
                 <g className='legend' transform={'translate(15,15)'}>
                     
                 </g>
-            </svg>
+            </g>
         )
     }
 }
