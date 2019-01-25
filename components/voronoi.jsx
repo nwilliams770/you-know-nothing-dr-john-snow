@@ -31,11 +31,10 @@ class Voronoi extends React.Component {
 
     active () {
         const { activeOverlay } = this.props;
-        return activeOverlay == "voronoi";
+        return activeOverlay == "voronoi" ? " show" : ""
     }
 
     render() {
-        if (!this.active()) return null;
         const { width, height, pumpCoords, deathCoords } = this.props;
         // minus 1 for 0-indexing
         const numCells = pumpCoords.length - 1;
@@ -47,7 +46,7 @@ class Voronoi extends React.Component {
         const polygonPaths = this.calcPolygonPaths(voronoi, numCells);
 
         return (
-            <g className="voronoi">
+            <g className={"voronoi" + `${this.active()}`}>
                     {
                         Object.values(polygonPaths).map((d, i) => (
                             <path

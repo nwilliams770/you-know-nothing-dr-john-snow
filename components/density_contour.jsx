@@ -7,11 +7,10 @@ import { contourDensity } from 'd3-contour';
 class DensityContour extends React.Component {
     active () {
         const { activeOverlay } = this.props;
-        return activeOverlay == "contour";
+        return activeOverlay == "contour" ? " show" : "";
     }
 
     render() {
-        if (!this.active()) return null;
         const { deathCoords, width, height } = this.props;
         const contours = contourDensity()
                         .size([width, height])
@@ -19,7 +18,7 @@ class DensityContour extends React.Component {
                         .thresholds(15)
                     (deathCoords)
         return (
-            <g className="contour">
+            <g className={"contour" + `${this.active()}`}>
                 {
                     contours.map((d, i) => (
                         <path 
