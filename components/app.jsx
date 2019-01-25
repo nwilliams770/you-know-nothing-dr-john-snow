@@ -14,7 +14,7 @@ class App extends React.Component {
 
 const Navbar = () => (
     <div className='navbar'>
-      <h1 className='title'>Soho Map</h1>
+      <h1 className='title'>1854 London's Soho Cholera Outbreak</h1>
     </div>
   )
 

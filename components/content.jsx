@@ -1,8 +1,13 @@
 import React from 'react';
 import { feature } from "topojson-client";
+import { geoMercator } from "d3-geo";
 import MapModule from './map_module';
-import VoronoiModule from './voronoi_module';
-import ContourModule from './contour_module';
+import SelectorModule from './selector_module';
+
+
+// Add projection
+// Pass pre-processed data (add method to extract Coordinates)
+// Add ability to turn off and on other modules
 
 class Content extends React.Component {
     constructor() {
@@ -10,13 +15,15 @@ class Content extends React.Component {
         this.state = {
             houses: {},
             borders: {},
-            // houseLabels: {}, houselabels we can extract from houses properties
             roadLabels: {},
             pumps: {},
             deaths: {},
-            isDataFetched: false
+            isDataFetched: false,
+            activeOverlay: null,
         }
+        this.updateActiveOverlay = this.updateActiveOverlay.bind(this);
     }
+
     componentDidMount() {
         this.getData().then(data => {
             this.setState({
@@ -25,7 +32,9 @@ class Content extends React.Component {
                 borders: feature(data[0], data[0].objects.border).features,
                 roadLabels: feature(data[0], data[0].objects.roads).features,
                 pumps: feature(data[0], data[0].objects.pumps).features,
+                pumpCoords: this.calcProjectionCoords(feature(data[0], data[0].objects.pumps).features),
                 deaths: data[2].objects.deaths.geometries,
+                deathCoords: this.calcProjectionCoords(data[2].objects.deaths.geometries),
                 isDataFetched: true
             })
         })
@@ -46,39 +55,55 @@ class Content extends React.Component {
         }
     }
 
+    updateActiveOverlay(dropdownInput) {
+        dropdownInput.value == null ? this.setState({activeOverlay: null}) : this.setState({activeOverlay: dropdownInput.value})
+    }
+
+    projection() {
+        const width = 960
+            , height = 800;
+        return geoMercator()
+            .scale( 43e5 )
+            .center([ -0.1376, 51.5131 ])
+            .translate([ width/2, height/2 ])
+            .clipExtent([ [ 0, 0 ], [ width, height ] ])
+            .precision( 0 );
+    }
+
+    // Returns projected points from array of points
+    calcProjectionCoords(points) {
+        const projection = this.projection();
+        return (points.map(point => {
+            if ("geometry" in point) {
+                return (projection(point.geometry.coordinates))
+            }
+            return (projection(point.coordinates))
+        })
+        )
+    }
+
     render() {
         // This is where we can add a spinner
         // TO DO: Perhaps this is where we should add the projection, and then just pass it down
         //  perhaps pass an options hash with the proection, width, height
-        if (!this.state.isDataFetched) return null;
+        if (!this.state.isDataFetched) return (<div>I'm a spinner!</div>);
         const width = 960
             , height = 800;
-        const { houses, borders, roadLabels, placeLabels, pumps, deaths, testPumps } = this.state;
+        const mapProjection = this.projection();
         return (
-            <svg width={`${width}`} height={`${height}`} viewBox={`0 0 ${width} ${height}`}>
+            <div className="content">
+                <SelectorModule
+                    activeOverlay={this.state.activeOverlay}
+                    updateActiveOverlay={this.updateActiveOverlay}
+                 />
                 <MapModule
-                    houses={houses}
-                    borders={borders}
-                    roadLabels={roadLabels}
-                    placeLabels={placeLabels}
-                    pumps={pumps}
-                    deaths={deaths}
+                    mapProjection={mapProjection}
                     width={width}
                     height={height}
+                    {...this.state}
                 />
-                <VoronoiModule
-                    pumps={pumps}
-                    width={width}
-                    height={height}
-                    testPumps={testPumps}
-                    deaths={deaths}
-                />
-                <ContourModule
-                    deaths={deaths}
-                    width={width}
-                    height={height}
-                />
-            </svg>
+            </div>
+
             // To-do:
             // We want to have all the elements in the same bounding box
             // So in content, we can have an svg wrapper, and moodules will just return wrapped
@@ -89,74 +114,3 @@ class Content extends React.Component {
 }
 
 export default Content;
-
-
-
-
-
-// var width = 960,
-// height = 800;
-
-// var proj = d3.geoMercator()
-// .scale( 43e5 )
-// .center([ -0.1376, 51.5131 ])
-// .translate([ width/2, height/2 ])
-// .clipExtent([ [ 0, 0 ], [ width, height ] ])
-// .precision( 0 );
-
-// var path = d3.geoPath()
-// .projection( proj );
-
-// var svg = d3.select( 'body' ).append( 'svg' )
-// .attr( 'width', width )
-// .attr( 'height', height );
-
-// queue()
-// .defer( d3.json, './updated-data/soho_1854.json' )
-// .await( ready );
-
-// function ready ( err, map, deaths ) {
-// if (err) throw err;
-
-// // houses and squares
-// svg.append( 'g' )
-// .attr( 'class', 'city' )
-// .selectAll( 'path' )
-//   .data( topojson.feature(map, map.objects.houses).features )
-// .enter().append( 'path' )
-//   .attr( 'class', d => d.properties.type )
-//   .attr( 'd', path );
-
-// // area border
-// svg.append( 'g' )
-// .attr( 'class', 'border' )
-// .selectAll( 'path' )
-//   .data( topojson.feature(map, map.objects.border).features )
-// .enter().append( 'path' )
-//   .attr( 'd', path );
-
-// // houses labels
-// svg.append( 'g' )
-// .attr( 'class', 'places' )
-// .selectAll( 'text' )
-//   .data( topojson.feature(map, map.objects.houses).features
-//       .filter( d => d.properties.title ) )
-// .enter().append( 'text' )
-//   .attr( 'dy', '0.32em' )
-//   .text( d => d.properties.title )
-//   .attr( 'transform', d => `translate(${path.centroid(d)})` );
-
-// // road labels
-// svg.append( 'g' )
-// .attr( 'class', 'roads' )
-// .selectAll( 'text' )
-//   .data( topojson.feature(map, map.objects.roads).features )
-// .enter().append( 'text' )
-//   .text( d => d.properties.title )
-//   .attr( 'dy', '0.32em' )
-//   .attr( 'transform', d => {
-//     var xy = proj( d.geometry.coordinates ),
-//         deg = d.properties.angle * (180 / Math.PI);
-//     return `translate(${xy}) rotate(${deg})`;
-//   });
-// }  
