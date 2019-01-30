@@ -96,5 +96,4 @@ const Map =  ({ houses, borders, roadLabels, placeLabels, pumps, deaths, mapProj
         </g>
 )
 
-
 export default Map;
