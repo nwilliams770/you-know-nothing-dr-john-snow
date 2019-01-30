@@ -6,7 +6,7 @@ import DensityContour from './density_contour';
 const MapModule = props => {
     const { houses, borders, roadLabels, placeLabels, pumps, deaths, pumpCoords, deathCoords, width, height, mapProjection, activeOverlay } = props;
     return (
-        <svg id="vis" width={`${width}`} height={`${height}`} viewBox={`0 0 ${width} ${height}`} preserveAspectRatio="xMidYMid meet">
+        <svg className='vis module' width={`${width}`} height={`${height}`} viewBox={`0 0 ${width} ${height}`} preserveAspectRatio="xMidYMid meet">
             <Map
                 houses={houses}
                 borders={borders}
@@ -31,6 +31,8 @@ const MapModule = props => {
                 height={height}
                 activeOverlay={activeOverlay}
             />
+            {/* Redrawing legend to keep it highest in stacking context */}
+            <use xlinkHref="#legend"/>
         </svg>
     )
 }
