@@ -16,6 +16,10 @@ span, article, footer, time, small, select {
   background: transparent;
 }
 
+body {
+  overscroll-behavior-y: none;
+}
+
 ul {
   list-style: none;
 }

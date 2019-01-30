@@ -1,6 +1,10 @@
 // CSS Reset
 @import "base/reset.scss";
 
+// Base
+@import "base/fonts.scss";
+@import "base/colors.scss";
+@import "base/layout.scss";
+
 // Components
 @import "components/content.scss";
-@import "components/map_module.scss";

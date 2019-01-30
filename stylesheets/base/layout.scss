@@ -1,0 +1,54 @@
+body {
+    background-color: $lightest-gray;
+}
+
+h1 {
+    font-family: $header;
+    font-size: 36px;
+}
+
+.tooltip {
+    font-family: $text;
+    h2 {
+        display: inline;
+        font-family: $display;
+        font-size: 24px;
+        padding-right: 4px;
+    }
+    p { display: inline; }
+}
+
+svg {
+    font-family: $text;
+    .legend {
+        text { font-size: 11px; }
+    }
+    .roads text {
+        font-size: 6px;
+        letter-spacing: 0.75px;
+        text-transform: uppercase;
+        text-anchor: middle;
+    }
+    .places text {
+        font-size: 9px;
+        letter-spacing: 0.25px;
+        text-transform: uppercase;
+    }
+}
+
+.selector {
+    max-width: 250px;
+    font-size: 14px;
+    .select {
+        &__control {
+          font-family: $text;
+          color: $gray;
+        }
+        &__menu {
+          font-family: $text;
+          color: $gray;
+        }
+    }
+}
+
+

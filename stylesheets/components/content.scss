@@ -1,0 +1,141 @@
+#main {
+    overflow: hidden;
+}
+
+svg:hover {
+    cursor: default;
+}
+
+.navbar {
+    width: 100vw;
+    background-color: $white;
+    padding: 14px;
+    border-bottom: 1px solid $light-gray;
+    .title {
+        font-family: $header;
+        letter-spacing: 1.5px;
+        font-size: 24px;
+        text-transform: uppercase;
+        font-weight: 600;
+        color: #d2c5b0;
+        // #ded7c2
+        &:hover { cursor: default; }
+    }
+}
+
+.content {
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+.module {
+    background-color: $white;
+    margin-top: 10px;
+    &.vis {
+    margin-bottom: 20px;
+    display: block;
+    border: 1.25px solid $light-gray;
+    }
+}
+
+.tooltip {
+    display: none;
+    position: absolute;
+    background-color: $lightest-gray;
+    border-radius: 2px;
+    padding: 9px 4px;
+    color: $gray;
+    font-size: 10px;
+    box-shadow: 0px 3px 12px rgba(0,0,0,0.2);
+    &:hover { cursor: default; }
+    &.voronoi-format { 
+        padding: 4px 10px;
+        line-height: 22px;
+    }
+}
+
+.map {
+    .border path {
+        fill: none;
+        stroke: $light-red;
+        // stroke-dasharray: 10, 3, 2, 3;
+        stroke-dasharray: 15, 5, 2, 5;
+        stroke-width : 1.6px;
+    }
+    .legend {
+        rect {
+            fill: white;
+            fill-opacity: .75;
+            stroke: white;
+            stroke-width: 1px;
+        }
+        .row-death circle {
+            fill: $red;
+            stroke: $dark-red;
+        }
+        .row-pump rect {
+            fill: $blue;
+            transform: translateY(-6px) rotate(45deg);
+        }
+
+    }
+    .city {
+        .square {
+            fill: $green
+        }
+    }
+    .roads text, .places text {
+        fill: $gray;
+    }
+    .pumps rect {
+        fill: $blue;
+        &:hover {
+          fill: $dark-blue;
+        }
+      }
+    .deaths {
+        fill: $red;
+        stroke: $dark-red;
+    }
+    .house {
+        fill: $lighter-gray;
+    }
+}
+
+.voronoi {
+    path {
+        stroke: $gray;
+        fill: transparent;
+        &:hover {
+            stroke: $lighter-gray;
+            fill: $gray;
+            fill-opacity: 0.3;
+        }
+    }
+}
+
+.contour {
+    &.outlines {
+        path { 
+            stroke: black;
+            stroke-width: 1px;
+            fill: transparent;
+            stroke-opacity: 0.7;
+        }
+    }
+    path {
+        stroke-opacity: 0.3;
+        fill-opacity: 0.3;
+        // &:hover { fill: $white }
+    }
+}
+
+.voronoi, .contour {
+    opacity: 0;
+    visibility: hidden;
+    &.show {
+      opacity: 1;
+      visibility: visible;
+    }
+}
+
