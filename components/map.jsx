@@ -1,10 +1,9 @@
 import React from 'react';
-import { geoMercator, geoPath } from "d3-geo";
+import { geoPath } from 'd3-geo';
+import { showPumpTooltip, hideTooltip } from './tooltip';
 
-// To-do:
-//  - Add legend
 const Map =  ({ houses, borders, roadLabels, placeLabels, pumps, deaths, mapProjection }) => (
-        <g className='map-module'>
+        <g className='map'>
             <g className='city'>
                 {
                     houses.map((d, i) => (
@@ -61,7 +60,7 @@ const Map =  ({ houses, borders, roadLabels, placeLabels, pumps, deaths, mapProj
                     deaths.map((d, i) => (
                         <circle
                             key={`death-${i}`}
-                            r={2}
+                            r='2'
                             transform={`translate(${mapProjection(d.coordinates)})`}
                         />
                     ))      
@@ -74,15 +73,25 @@ const Map =  ({ houses, borders, roadLabels, placeLabels, pumps, deaths, mapProj
                             // the name of the pump
                             key={`${d.properties.title}`}
                             data-title={`${d.properties.title}`}
-                            width={9}
-                            height={9}
+                            width='9'
+                            height='9'
                             transform={`translate(${mapProjection(d.geometry.coordinates)}) rotate(45)`}
+                            onMouseEnter={showPumpTooltip}
+                            onMouseLeave={hideTooltip}
                         />
                     ))
                 }
             </g>
-            <g className='legend' transform={'translate(15,15)'}>
-                
+            <g className='legend' id="legend" transform='translate(15,15)'>
+                <rect width="180" height="55"></rect>
+                <g className="row-death" transform='translate(20,20)'>
+                    <text x='12' dy='0.32em'>A Cholera death</text>
+                    <circle r='3' />
+                </g>
+                <g className="row-pump" transform='translate(20,38)'>
+                    <text x='12' dy='0.32em'>Public water pump</text>
+                    <rect width='9' height='9' />
+                </g>
             </g>
         </g>
 )
