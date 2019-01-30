@@ -24,7 +24,7 @@ class DensityContour extends React.Component {
         //                 .range(["transparent", "red", "blue"]);
 
         var color = scaleSequential(interpolateViridis)
-                    .domain([0, 0.01]); // Points per square pixel.        
+                    .domain([0, 0.01]);    
         return (
             <g className={'contour' + `${this.active()}`}>
                 {
@@ -33,8 +33,6 @@ class DensityContour extends React.Component {
                             key={`contour-${i}`}
                             d={geoPath()(d)}
                             fill={color(d.value)}
-                            stroke='black'
-                            strokeWidth='1px'
                         /> 
                     ))
                 }
