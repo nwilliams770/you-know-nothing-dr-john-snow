@@ -1,13 +1,8 @@
 import React from 'react';
 import { Delaunay } from 'd3-delaunay';
-
-// TO DO: Refactor to a different style component, do we need to create a class? REFER TO MAP for more info
-
+import { showVoronoiTooltip, hideTooltip } from './tooltip';
 
 class Voronoi extends React.Component {
-    constructor(props) {
-        super(props);
-    }
     calcDeathsPerCell(delaunay, coords, numCells) {
         const deathsPerCell = {};
         for (let i = 0; i <= numCells; i ++) {
@@ -52,16 +47,16 @@ class Voronoi extends React.Component {
                             <path
                                 key={`voronoi-${i}`}
                                 d={`${d}`}
-                                stroke="black"
-                                fill="transparent"
                                 data-deaths={`${deathsPerCell[i]}`}
                                 data-i={`${i}`}
+                                onMouseOver={showVoronoiTooltip}
+                                onMouseMove={showVoronoiTooltip}
+                                onMouseLeave={hideTooltip}
                             />
                         ))
                     }
             </g>
         )
-
     }
 }
 
