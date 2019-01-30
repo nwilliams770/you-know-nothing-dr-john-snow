@@ -1,30 +1,38 @@
 import React from 'react';
 import { geoPath } from "d3-geo";
 import { contourDensity } from 'd3-contour';
-
-// TO DO: Refactor to a different style component, do we need to create a class? REFER TO MAP for more info
+import { scaleSequential } from 'd3-scale';
+import { interpolateViridis} from 'd3-scale-chromatic';
 
 class DensityContour extends React.Component {
     active () {
         const { activeOverlay } = this.props;
-        return activeOverlay == "contour" ? " show" : "";
+        if (activeOverlay == "contour-fill") return " show";
+        if (activeOverlay == "contour-outline") return " show outlines";
+        return "";
     }
 
     render() {
         const { deathCoords, width, height } = this.props;
         const contours = contourDensity()
                         .size([width, height])
-                        .bandwidth(20)
-                        .thresholds(15)
-                    (deathCoords)
+                        .bandwidth(24)
+                        .thresholds(14)
+                        (deathCoords);
+        // const color = scaleLinear()
+        //                 .domain([0, 0.003, 0.05])
+        //                 .range(["transparent", "red", "blue"]);
+
+        var color = scaleSequential(interpolateViridis)
+                    .domain([0, 0.01]); // Points per square pixel.        
         return (
-            <g className={"contour" + `${this.active()}`}>
+            <g className={'contour' + `${this.active()}`}>
                 {
                     contours.map((d, i) => (
                         <path 
                             key={`contour-${i}`}
                             d={geoPath()(d)}
-                            fill='transparent'
+                            fill={color(d.value)}
                             stroke='black'
                             strokeWidth='1px'
                         /> 
