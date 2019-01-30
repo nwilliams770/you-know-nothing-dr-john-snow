@@ -4,11 +4,6 @@ import { geoMercator } from "d3-geo";
 import MapModule from './map_module';
 import SelectorModule from './selector_module';
 
-
-// Add projection
-// Pass pre-processed data (add method to extract Coordinates)
-// Add ability to turn off and on other modules
-
 class Content extends React.Component {
     constructor() {
         super();
@@ -83,10 +78,8 @@ class Content extends React.Component {
     }
 
     render() {
-        // This is where we can add a spinner
-        // TO DO: Perhaps this is where we should add the projection, and then just pass it down
-        //  perhaps pass an options hash with the proection, width, height
-        if (!this.state.isDataFetched) return (<div>I'm a spinner!</div>);
+        // **
+        if (!this.state.isDataFetched) return (<div><img src="../assets/spinner.gif" alt="loader"/></div>);
         const width = 960
             , height = 800;
         const mapProjection = this.projection();
@@ -103,12 +96,6 @@ class Content extends React.Component {
                     {...this.state}
                 />
             </div>
-
-            // To-do:
-            // We want to have all the elements in the same bounding box
-            // So in content, we can have an svg wrapper, and moodules will just return wrapped
-            // in a <g> tag, which is just the div of svgs
-            // Maybe just pass {...this.state}? 
         )
     }
 }
