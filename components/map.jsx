@@ -82,13 +82,13 @@ const Map =  ({ houses, borders, roadLabels, placeLabels, pumps, deaths, mapProj
                     ))
                 }
             </g>
-            <g className='legend' id="legend" transform='translate(15,15)'>
-                <rect width="180" height="55"></rect>
-                <g className="row-death" transform='translate(20,20)'>
+            <g className='legend' id='legend' transform='translate(15,15)'>
+                <rect width='180' height='55'></rect>
+                <g className='row-death' transform='translate(20,20)'>
                     <text x='12' dy='0.32em'>A Cholera death</text>
                     <circle r='3' />
                 </g>
-                <g className="row-pump" transform='translate(20,38)'>
+                <g className='row-pump' transform='translate(20,38)'>
                     <text x='12' dy='0.32em'>Public water pump</text>
                     <rect width='9' height='9' />
                 </g>

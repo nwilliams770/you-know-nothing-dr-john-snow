@@ -32,7 +32,7 @@ const MapModule = props => {
                 activeOverlay={activeOverlay}
             />
             {/* Redrawing legend to keep it highest in stacking context */}
-            <use xlinkHref="#legend"/>
+            <use xlinkHref='#legend'/>
         </svg>
     )
 }

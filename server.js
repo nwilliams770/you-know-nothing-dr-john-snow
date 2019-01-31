@@ -15,7 +15,7 @@ app.use(express.static(path.join(__dirname, 'data')));
 // app.use(express.static('data'));
 
 // line to serve favicon
-// app.use(favicon(path.join(__dirname, "public", "favicon.ico")))
+// app.use(favicon(path.join(__dirname, 'favicon.ico')));
 
 app.get('/', (req, res) => {
   res.sendFile(path.resolve(__dirname+'/index.html'));

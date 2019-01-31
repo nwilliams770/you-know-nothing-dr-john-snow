@@ -1,6 +1,6 @@
 import React from 'react';
-import { feature } from "topojson-client";
-import { geoMercator } from "d3-geo";
+import { feature } from 'topojson-client';
+import { geoMercator } from 'd3-geo';
 import MapModule from './map_module';
 import SelectorModule from './selector_module';
 
@@ -40,9 +40,7 @@ class Content extends React.Component {
             let data = await Promise.all([
                 fetch('/soho_1854.json').then(response => response.json()),
                 fetch('/pumps-topo.json').then(response => response.json()),
-                fetch('/deaths-topo.json').then(response => response.json()),
-                fetch('/test.json').then(response => response.json())
-
+                fetch('/deaths-topo.json').then(response => response.json())
             ]);
             return data;
         } catch(err) {
@@ -69,7 +67,7 @@ class Content extends React.Component {
     calcProjectionCoords(points) {
         const projection = this.projection();
         return (points.map(point => {
-            if ("geometry" in point) {
+            if ('geometry' in point) {
                 return (projection(point.geometry.coordinates))
             }
             return (projection(point.coordinates))
@@ -79,12 +77,12 @@ class Content extends React.Component {
 
     render() {
         // **
-        if (!this.state.isDataFetched) return (<div><img src="../assets/spinner.gif" alt="loader"/></div>);
+        if (!this.state.isDataFetched) return ('');
         const width = 960
             , height = 800;
         const mapProjection = this.projection();
         return (
-            <div className="content">
+            <div className='content'>
                 <SelectorModule
                     activeOverlay={this.state.activeOverlay}
                     updateActiveOverlay={this.updateActiveOverlay}

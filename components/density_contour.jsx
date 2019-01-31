@@ -7,9 +7,9 @@ import { interpolateViridis} from 'd3-scale-chromatic';
 class DensityContour extends React.Component {
     active () {
         const { activeOverlay } = this.props;
-        if (activeOverlay == "contour-fill") return " show";
-        if (activeOverlay == "contour-outline") return " show outlines";
-        return "";
+        if (activeOverlay == 'contour-fill') return ' show';
+        if (activeOverlay == 'contour-outline') return ' show outlines';
+        return '';
     }
 
     render() {
