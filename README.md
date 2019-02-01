@@ -1,7 +1,7 @@
 # you-know-nothing-dr-john-snow
 Contrary to this Game of Thrones-inspired project title, [Dr. John Snow](https://en.wikipedia.org/wiki/John_Snow) was in fact quite knowledgeable and vastly modernized anaesthesia, epidemiology, and public health. During an outbreak of cholera in the Soho neighborhood of London in 1854, Snow was skeptical of the pervasive [miasma theory](https://en.wikipedia.org/wiki/Miasma_theory) and hypothesized an agent in contaminated water was the true cause of the outbreak. He explored his theory by drawing a map of the area and mapping all cholera fatalities and public water pumps within the area. 
 
-Many thanks to [Borgar](https://github.com/borgar) for map topojson
+Many thanks to [Borgar](https://github.com/borgar) for map topoJSON
 
 ### Features
 - SVG map of Soho neighborhood with mapped cholera fatalities and public water pumps
