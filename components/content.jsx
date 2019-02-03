@@ -38,9 +38,9 @@ class Content extends React.Component {
     async getData() {
         try {
             let data = await Promise.all([
-                fetch('/soho_1854.json').then(response => response.json()),
-                fetch('/pumps-topo.json').then(response => response.json()),
-                fetch('/deaths-topo.json').then(response => response.json())
+                fetch('https://nwilliams770.github.io/you-know-nothing-dr-john-snow/data/soho_1854.json').then(response => response.json()),
+                fetch('https://nwilliams770.github.io/you-know-nothing-dr-john-snow/data/pumps-topo.json').then(response => response.json()),
+                fetch('https://nwilliams770.github.io/you-know-nothing-dr-john-snow/data/deaths-topo.json').then(response => response.json())
             ]);
             return data;
         } catch(err) {
