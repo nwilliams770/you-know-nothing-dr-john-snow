@@ -1,6 +1,8 @@
 # you-know-nothing-dr-john-snow
 Contrary to this Game of Thrones-inspired project title, [Dr. John Snow](https://en.wikipedia.org/wiki/John_Snow) was in fact quite knowledgeable and vastly modernized anaesthesia, epidemiology, and public health. During an outbreak of cholera in the Soho neighborhood of London in 1854, Snow was skeptical of the pervasive [miasma theory](https://en.wikipedia.org/wiki/Miasma_theory) and hypothesized an agent in contaminated water was the true cause of the outbreak. He explored his theory by drawing a map of the area and mapping all cholera fatalities and public water pumps within the area. 
 
+See it [live](https://nwilliams770.github.io/you-know-nothing-dr-john-snow/)
+
 Many thanks to [Borgar](https://github.com/borgar) for map topoJSON
 
 ### Features
@@ -32,7 +34,7 @@ Multiple D3 libraries I employed in this project directly access or mutate the D
 - `<Content>` contains the main logic to fetch and extract desired features asynchronously, passing them down to the appropriate components.
 - `<SelectorModule>` is responsible for toggling the voronoi diagram (`<Voronoi>`) and density contour (`<DensityContour>`) components via a `activeOverlay` prop. Both `<Voronoi>` and `<DensityContour>` could be implemented as functional components but are implemented as class components as they must maintain a local state for the toggling functionality.
 
-## Setup
+## Setup (for local viewing)
 - `$ npm install` to install dependencies
 - `$npm start` to start Express server
 - open in browser `http://localhost:8080`
