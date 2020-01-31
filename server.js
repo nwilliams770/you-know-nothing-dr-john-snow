@@ -7,6 +7,8 @@ const compiler = webpack(config);
 const bodyParser = require('body-parser');
 const app = express();
 const port = 8080;
+const favicon = require('serve-favicon');
+
 app.use(bodyParser.json());
 
 
@@ -15,7 +17,7 @@ app.use(express.static(path.join(__dirname, 'data')));
 // app.use(express.static('data'));
 
 // line to serve favicon
-// app.use(favicon(path.join(__dirname, 'favicon.ico')));
+app.use(favicon(path.join(__dirname, 'favicon.ico')));
 
 app.get('/', (req, res) => {
   res.sendFile(path.resolve(__dirname+'/index.html'));
