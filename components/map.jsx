@@ -51,7 +51,7 @@ const Map =  ({ houses, borders, roadLabels, placeLabels, pumps, deaths, mapProj
                             >
                             {d.properties.title}
                             </text>
-                        )  
+                        )
                     })
                 }
             </g>
@@ -63,7 +63,7 @@ const Map =  ({ houses, borders, roadLabels, placeLabels, pumps, deaths, mapProj
                             r='2'
                             transform={`translate(${mapProjection(d.coordinates)})`}
                         />
-                    ))      
+                    ))
                 }
             </g>
             <g className='pumps'>
@@ -82,7 +82,7 @@ const Map =  ({ houses, borders, roadLabels, placeLabels, pumps, deaths, mapProj
                     ))
                 }
             </g>
-            <g className='legend' id='legend' transform='translate(15,15)'>
+            <g className='legend' transform='translate(15,15)'>
                 <rect width='180' height='55'></rect>
                 <g className='row-death' transform='translate(20,20)'>
                     <text x='12' dy='0.32em'>A Cholera death</text>
