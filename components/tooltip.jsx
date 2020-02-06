@@ -26,7 +26,7 @@ export function showVoronoiTooltip(evt) {
     tooltip.style.top = evt.pageY - 25 + 'px';
     return
 }
-  
+
 export function hideTooltip(evt) {
     const tooltip = document.querySelector('.tooltip');
     tooltip.style.display = 'none';

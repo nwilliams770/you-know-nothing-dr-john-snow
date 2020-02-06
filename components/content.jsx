@@ -34,7 +34,7 @@ class Content extends React.Component {
             })
         })
     }
-    
+
     async getData() {
         try {
             let data = await Promise.all([
