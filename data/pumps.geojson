@@ -1,0 +1,20 @@
+{
+"type": "FeatureCollection",
+"name": "pumps",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "id": "newman-street_2", "title": "Newman Street", "type": "pump" }, "geometry": { "type": "Point", "coordinates": [ -0.134722578957896, 51.516239128712876 ] } },
+{ "type": "Feature", "properties": { "id": "oxford-street-berners-street_1", "title": "Oxford Street \/ Berners Street", "type": "pump" }, "geometry": { "type": "Point", "coordinates": [ -0.135912400440044, 51.516047009900994 ] } },
+{ "type": "Feature", "properties": { "id": "oxford-market_2", "title": "Oxford Market", "type": "pump" }, "geometry": { "type": "Point", "coordinates": [ -0.139654474647465, 51.516339 ] } },
+{ "type": "Feature", "properties": { "id": "marlborough-mews_2", "title": "Marlborough Mews", "type": "pump" }, "geometry": { "type": "Point", "coordinates": [ -0.139699274127413, 51.514879049504948 ] } },
+{ "type": "Feature", "properties": { "id": "carnaby-street_2", "title": "Carnaby Street", "type": "pump" }, "geometry": { "type": "Point", "coordinates": [ -0.139592545954595, 51.513836881188119 ] } },
+{ "type": "Feature", "properties": { "id": "broad-street_2", "title": "Broad Street", "type": "pump" }, "geometry": { "type": "Point", "coordinates": [ -0.136663450545054, 51.51330093069307 ] } },
+{ "type": "Feature", "properties": { "id": "warwick-street_2", "title": "Warwick Street", "type": "pump" }, "geometry": { "type": "Point", "coordinates": [ -0.138264373137314, 51.511251663366338 ] } },
+{ "type": "Feature", "properties": { "id": "sackville-row-vigo-street_1", "title": "Sackville Row \/ Vigo Street", "type": "pump" }, "geometry": { "type": "Point", "coordinates": [ -0.139654474647465, 51.510140881188114 ] } },
+{ "type": "Feature", "properties": { "id": "tickborne-street_1", "title": "Tickborne Street", "type": "pump" }, "geometry": { "type": "Point", "coordinates": [ -0.134070351235124, 51.510030336633662 ] } },
+{ "type": "Feature", "properties": { "id": "dean-street_2", "title": "Dean Street", "type": "pump" }, "geometry": { "type": "Point", "coordinates": [ -0.131660402740274, 51.512279346534655 ] } },
+{ "type": "Feature", "properties": { "id": "rupert-street_2", "title": "Rupert Street", "type": "pump" }, "geometry": { "type": "Point", "coordinates": [ -0.133619721172117, 51.51205978217822 ] } },
+{ "type": "Feature", "properties": { "id": "castle-street-east_2", "title": "Castle Street East", "type": "pump" }, "geometry": { "type": "Point", "coordinates": [ -0.13779002570257, 51.516614217821783 ] } },
+{ "type": "Feature", "properties": { "id": "bridle-street_1", "title": "Bridle Street", "type": "pump" }, "geometry": { "type": "Point", "coordinates": [ -0.135983552555256, 51.511475039603958 ] } }
+]
+}

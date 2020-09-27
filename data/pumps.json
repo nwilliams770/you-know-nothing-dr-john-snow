@@ -1,0 +1,15 @@
+{"pumps":
+    [{"id":"newman-street_2","title":"Newman Street", "coordinates":[7085,9262]},
+    {"id":"oxford-street-berners-street_1","title":"Oxford Street / Berners Street", "coordinates":[6182,9010]},
+    {"id":"oxford-market_2","title":"Oxford Market", "coordinates":[3342,9393]},
+    {"id":"marlborough-mews_2","title":"Marlborough Mews", "coordinates":[3308,7478]},
+    {"id":"carnaby-street_2","title":"Carnaby Street", "coordinates":[3389,6111]},
+    {"id":"broad-street_2","title":"Broad Street", "coordinates":[5612,5408]},
+    {"id":"warwick-street_2","title":"Warwick Street", "coordinates":[4397,2720]},
+    {"id":"sackville-row-vigo-street_1","title":"Sackville Row / Vigo Street", "coordinates":[3342,1263]},
+    {"id":"tickborne-street_1","title":"Tickborne Street", "coordinates":[7580,1118]},
+    {"id":"dean-street_2","title":"Dean Street", "coordinates":[9409,4068]},
+    {"id":"rupert-street_2","title":"Rupert Street", "coordinates":[7922,3780]},
+    {"id":"castle-street-east_2","title":"Castle Street East", "coordinates":[4757,9754]},
+    {"id":"bridle-street_1","title":"Bridle Street", "coordinates":[6128,3013]}]
+}
